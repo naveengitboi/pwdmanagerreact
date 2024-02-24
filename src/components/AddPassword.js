@@ -38,6 +38,9 @@ function AddPassword() {
         })
 
     }
+    const searchedData = pwdList.filter((user) => {
+        return user.website.toLowerCase().includes(searchInput.toLowerCase());
+    })
 
     return (
         <div className='addpwdContainer'>
@@ -69,7 +72,7 @@ function AddPassword() {
                 </form>
                 <img src="https://assets.ccbp.in/frontend/react-js/password-manager-lg-img.png" alt="password manager" />
             </div>
-            <PasswordsList pwdList={pwdList} setSearchInput={setSearchInput} deleteFunction={onDeleteOperation} onSearchFun={onSearchFunction} />
+            <PasswordsList pwdList={searchedData} setSearchInput={setSearchInput} deleteFunction={onDeleteOperation} onSearchFun={onSearchFunction} />
         </div>
     )
 }

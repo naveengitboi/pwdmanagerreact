@@ -4,10 +4,10 @@ function PasswordsList(props) {
     const { pwdList, deleteFunction, setSearchInput, onSearchFun } = props;
 
     const [showPwd, setShowPwd] = useState(false)
-    
+
     const searchInputText = (e) => {
-         setSearchInput(e.target.value)
-         onSearchFun();
+        setSearchInput(e.target.value)
+        onSearchFun();
     }
 
     return (
@@ -27,25 +27,32 @@ function PasswordsList(props) {
             </div>
             <div className="pwdLists">
                 {
-                    pwdList.map((pwd, index) => {
-                        return (
-                            <li key={index}>
-                                <div className="profileImg">
-                                    {pwd.user[0]}
-                                </div>
-                                <div className="profileDetails">
-                                    <p>{pwd.website}</p>
-                                    <p>{pwd.user}</p>
-                                    <p> {showPwd ? `${pwd.password}` : (
-                                        <img src="https://assets.ccbp.in/frontend/react-js/password-manager-stars-img.png" alt="stars" />
-                                    )} </p>
-                                </div>
-                                <div className="delBtn">
-                                    <button onClick={() => deleteFunction(pwd.id)}><img src="https://assets.ccbp.in/frontend/react-js/password-manager-delete-img.png" alt="delete" /></button>
-                                </div>
-                            </li>
-                        )
-                    })
+                    pwdList.length == 0 ? (
+                        <div className="noPasswords">
+                            <img src="https://assets.ccbp.in/frontend/react-js/no-passwords-img.png" alt='no passwords' className='noPwdImg' />
+                            <p>No Passwords</p>
+                        </div>
+                    ) : (
+                        pwdList.map((pwd, index) => {
+                            return (
+                                <li key={index}>
+                                    <div className="profileImg">
+                                        {pwd.user[0]}
+                                    </div>
+                                    <div className="profileDetails">
+                                        <p>{pwd.website}</p>
+                                        <p>{pwd.user}</p>
+                                        <p> {showPwd ? `${pwd.password}` : (
+                                            <img src="https://assets.ccbp.in/frontend/react-js/password-manager-stars-img.png" alt="stars" />
+                                        )} </p>
+                                    </div>
+                                    <div className="delBtn">
+                                        <button onClick={() => deleteFunction(pwd.id)}><img src="https://assets.ccbp.in/frontend/react-js/password-manager-delete-img.png" alt="delete" /></button>
+                                    </div>
+                                </li>
+                            )
+                        })
+                    )
                 }
             </div>
         </div>

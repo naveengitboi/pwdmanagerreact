@@ -101,6 +101,9 @@ nav img {
   font-size: 1rem;
   color: white;
 }
+.noPwdImg {
+  width: 50%;
+}
 .pwdLists {
   display: flex;
   flex-wrap: wrap;
